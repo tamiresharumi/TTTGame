@@ -1,11 +1,13 @@
 class insq:
-
-"""
-	fields = matrix with the (duh) fields
-"""
+	"""
+		fields = matrix with the (duh) fields
+		size = size of the inner square
+		filled = number of positions filled. better than counting every damn time
+	"""
 	def __init__(self, size):
 		self.size = size
 		self.fields = self.fill_steps()
+		self.filled = 0
 		
 	def fill_steps(self):
 		sts = range(self.size)
@@ -19,20 +21,29 @@ class insq:
 			list.append(aux)		
 		return list
 
-	# def set_value(self, array_with_coords, value):
-	def set_move_to_coord(self, array_with_coords, value):
-		ret = 0
-		field = self.fields[array_with_coords[0]][array_with_coords[1]]
-		if(self.fields[array_with_coords[0]][array_with_coords[1]] == None):
-			self.fields[array_with_coords[0]][array_with_coords[1]] = value
-			ret = self.check_rules(array_with_coords)
+	def is_filled(self):
+		print("#TEST", str(self.filled))
+		return (self.filled==9)
+		
+	def is_valid_move(self, crds):
+		print("-", str(self.fields[crds[0]][crds[1]]))
+		if(self.fields[crds[0]][crds[1]] == None):
+			return 1
 		else:
-			ret = -1		
-		return ret
+			return 0
 		
+	"""
+		só chama set_move... quando estiver tudo ok
+	"""	
+	def set_move_to_coord(self, array_with_coords, value):
+		self.fields[array_with_coords[0]][array_with_coords[1]] = value
+		self.filled+=1
+		return self.check_rules(array_with_coords)		
 		
-	"""TODO checagem, tem que ser uma por uma porque senão dá errado
-		primeiro linha, depois coluna, depois diagonais """
+	"""
+		TODO checagem, tem que ser uma por uma porque senão dá errado
+		primeiro linha, depois coluna, depois diagonais 
+	"""
 	def check_rules(self, coords):
 		f = self.fields
 		l = coords[0]
@@ -55,14 +66,33 @@ class insq:
 			if(win):
 				return 1
 			else:
-				return 0
+				if((l+c)%2 == 0):
+					if((l+c)%4 == 0):
+						win = True
+						for i in range(1,self.size):
+							if(f[i-1][i-1] != f[i][i]):
+								win = False
+							else:
+								win = win and True
+						if(win):
+							return 1
+						else:
+							return 0
+					else:
+						win = True
+						for i in range(1,self.size):
+							if(f[i][3-i] != f[i][2-i]):
+								win = False
+							else:
+								win = win and True
+						if(win):
+							return 1
+						else:
+							return 0
 	
 	def print(self):
-		# print(self.fields)
 		for i in range(self.size):
 			for j in range(self.size):
-				# print(self.fields[i][j], " ")
-				#sys.stdout.write(self.fields+' \b')
 				print(self.fields[i][j], end="  \b")
 			print()
 		

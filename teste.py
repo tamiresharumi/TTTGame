@@ -28,22 +28,32 @@ a = square()
 # a.move(4,3,2)
 #a.print_owners()
 # a.move(4,4,2)
-# a.move(4,5,2)
-# a.move(4,5,2)
+# a.move(4,3,2)
+# a.move(4,6,2) 
 # a.move(2,0,1)
 # a.move(2,1,1)
-# a.move(2,2,1)
-a.move(7,0,1)
-a.move(7,1,1)
-a.move(7,2,1)
-a.move(7,3,2)
-a.move(7,4,2)
-a.move(7,5,2)
+# a.move(2,2,1) # 2 pertence ao 1
+# a.move(7,0,1)
+# a.move(7,1,1)
+# a.move(7,2,1) #7 pertence ao 1
+# a.move(7,3,2)
+# a.move(7,4,2)
+# a.move(7,5,2) # 7 já tem dono
 
-a.move(3,0,2)
-a.move(3,3,2)
-a.move(3,6,2)
-a.move(3,5,1)
+# a.move(3,0,2)
+# a.move(3,3,2)
+# a.move(3,6,2) # 3 pertence ao 2
+# a.move(3,5,1)
+# a.move(3,1,1)
+# # 
+a.move(4,3,2)
+a.move(4,1,1)
 a.move(3,1,1)
-# 
 a.print_owners()
+# ##
+# b = a.get_insquare(7)
+# c = b.is_filled()
+c = 1
+print(c)
+c = c ^1
+print(c)
