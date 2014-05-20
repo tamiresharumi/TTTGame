@@ -8,6 +8,7 @@ from insq import insq
 	- algum algoritmo magico pra pegar esses dados e transformar em estrategia hohoho
 	- 
 """
+__DEBUG__ = False
 
 class square:	
 	def __init__(self):
@@ -59,11 +60,8 @@ class square:
 		coords = self.int_to_coord(position)
 		
 		has_new_owner = x.set_move_to_coord(coords, owner)
-		if((has_new_owner == 1) and (self.get_owner(sq_coord) == "none")):		
-			print("move(", insq, position, owner, ") called this")
-			print(str(owner)+" has taken #"+str(insq)+" outside sq!")			
+		if((has_new_owner == 1) and (self.get_owner(sq_coord) == "none")):	
 			self.set_owner(sq_coord, owner)
-			print("out | coords:", coords, "owner:",self.get_owner(sq_coord))
 	
 	def print_owners(self):
 		for i in range(self.size):

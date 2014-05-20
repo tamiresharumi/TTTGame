@@ -1,9 +1,11 @@
 class insq:
 
+"""
+	fields = matrix with the (duh) fields
+"""
 	def __init__(self, size):
 		self.size = size
 		self.fields = self.fill_steps()
-		# self.rules = self.fields[1]
 		
 	def fill_steps(self):
 		sts = range(self.size)
@@ -14,8 +16,7 @@ class insq:
 			aux = []
 			for j in sts:
 				aux.append(what)
-			list.append(aux)
-		#print(list)		
+			list.append(aux)		
 		return list
 
 	# def set_value(self, array_with_coords, value):
@@ -26,7 +27,7 @@ class insq:
 			self.fields[array_with_coords[0]][array_with_coords[1]] = value
 			ret = self.check_rules(array_with_coords)
 		else:
-			print("POSITION ALREADY IN USE U NO GET IT")		
+			ret = -1		
 		return ret
 		
 		
@@ -45,7 +46,16 @@ class insq:
 		if(win):
 			return 1
 		else:
-			return 0
+			win = True
+			for i in range(1,self.size):
+				if(f[i][c] != f[i-1][c]):
+					win = False
+				else:
+					win = win and True
+			if(win):
+				return 1
+			else:
+				return 0
 	
 	def print(self):
 		# print(self.fields)
