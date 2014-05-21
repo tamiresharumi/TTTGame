@@ -22,15 +22,17 @@ class insq:
 		return list
 
 	def is_filled(self):
-		print("#TEST", str(self.filled))
+		# print("filled is", str(self.filled))
 		return (self.filled==9)
 		
 	def is_valid_move(self, crds):
-		print("-", str(self.fields[crds[0]][crds[1]]))
+		#print("-", str(self.fields[crds[0]][crds[1]]))
 		if(self.fields[crds[0]][crds[1]] == None):
-			return 1
+			# print("-->This is", self.fields[crds[0]][crds[1]], "valid move!")
+			return True
 		else:
-			return 0
+			# print("This is", self.fields[crds[0]][crds[1]], "invalid move!")
+			return False
 		
 	"""
 		só chama set_move... quando estiver tudo ok
@@ -67,7 +69,9 @@ class insq:
 				return 1
 			else:
 				if((l+c)%2 == 0):
-					if((l+c)%4 == 0):
+					# print("[", l, c, "]é diagonal")
+					if((l-c) == 0):
+						# print("primária")							
 						win = True
 						for i in range(1,self.size):
 							if(f[i-1][i-1] != f[i][i]):
@@ -75,17 +79,19 @@ class insq:
 							else:
 								win = win and True
 						if(win):
-							return 1
-						else:
-							return 0
-					else:
+							# print("win pela d.1")
+							return 1					
+					if((l+c) == 2):
+						# print("secundária")
 						win = True
 						for i in range(1,self.size):
-							if(f[i][3-i] != f[i][2-i]):
+							# print("f[",i-1,"][",3-i,"], f[",i,"][",2-i,"]", f[i-1][3-i], f[i][2-i])
+							if(f[i-1][3-i] != f[i][2-i]):
 								win = False
 							else:
 								win = win and True
 						if(win):
+							# print("win pela d.2")
 							return 1
 						else:
 							return 0

@@ -1,7 +1,7 @@
 import random
 from square import square
 
-n = 100000
+n = 10
 p = 0
 random.seed()
 
@@ -15,14 +15,12 @@ r = True
 for i in range(n):
 	x = random.randint(0,8)
 	y = random.randint(0,8)
-	# x = random.random()
-	# y = random.random()
 	r = a.move(x,y,p)	
 	if(r == True):
 		p = p ^ 1
-	if(a.is_over()):
-		print("Game Over!")
-		break
+		if(a.is_over()):
+			print("Game Over!")
+			break
 
 # print(p)
 	
@@ -45,6 +43,14 @@ for i in range(n):
 # a.move(3,5,1)
 # a.move(3,1,1)
 	
+# f = open('stats', 'w')
+# f.write("owners:\n")
+# um_print = a.print_owners()
+# f.write(a.print_owners())
+# f.write("\nTrials:"+str(i)+"\nFull Square:\n")
+# #f.write(a.print_full_square())
+# f.close()
+print("movements:",a.vms)
+print("owners:")
 a.print_owners()
-print(i, "trials!")
 a.print_full_square()
