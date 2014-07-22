@@ -8,7 +8,7 @@ from insq import insq
 	- algum algoritmo magico pra pegar esses dados e transformar em estrategia hohoho
 	- uma variavel pra controlar quem jogou onde
 """
-__CDATA__= False
+__CDATA__= True
 class square:	
 	def __init__(self):
 		self.size = 3
@@ -95,7 +95,8 @@ class square:
 			# print("a.move("+str(insq)+","+str(position)+","+str(owner)+")\nk is", k, "\n")
 			if(k == 1):
 				if(__CDATA__):
-					self.f.write("a.move("+str(insq)+","+str(position)+","+str(owner)+")\nprint('a.move("+str(insq)+","+str(position)+","+str(owner)+")')\na.print_full_square()\n")
+					self.f.write("i:"+str(insq)+" p:"+str(position)+" o:"+str(owner)+"\n")
+					#self.f.write("a.move("+str(insq)+","+str(position)+","+str(owner)+")\nprint('a.move("+str(insq)+","+str(position)+","+str(owner)+")')\na.print_full_square()\n")
 					
 				self.last_player = owner
 				self.last_position = position

@@ -26,6 +26,10 @@ for i in range(n):
 			# a.print_full_square()
 			x = random.randint(0,8)
 		
+f = open('stats', 'a')	
+f.write(str(i)+" "+str(a.vms)+"\n")
+f.close()
+
 print("out in", i)
 print("movements:",a.vms)
 print("owners:")
